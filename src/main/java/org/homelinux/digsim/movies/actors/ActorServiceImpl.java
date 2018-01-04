@@ -8,7 +8,15 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.cache.Cache;
+import javax.cache.CacheManager;
+import javax.cache.Caching;
+import javax.cache.configuration.MutableConfiguration;
+import javax.cache.expiry.AccessedExpiryPolicy;
+import javax.cache.expiry.Duration;
+import javax.cache.spi.CachingProvider;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Digsim
@@ -23,6 +31,8 @@ public class ActorServiceImpl implements ActorService {
 	@Autowired
 	private SimpleActorsRepository actorBd;
 
+	private Cache<String, List<Actor>> cache;
+
 	@PostConstruct
 	protected void initialize() {
 		Actor a = new Actor("Harrison", "Ford");
@@ -30,11 +40,27 @@ public class ActorServiceImpl implements ActorService {
 		a = new Actor("The", "Rock");
 		saveActor(a);
 
+		CachingProvider jcacheProvider = Caching.getCachingProvider();
+		CacheManager jcacheManager = jcacheProvider.getCacheManager();
+		MutableConfiguration<String, List<Actor>> configuration = new MutableConfiguration<>();
+		configuration.setStoreByValue(true).setExpiryPolicyFactory(AccessedExpiryPolicy.factoryOf(new Duration(TimeUnit.SECONDS, 3)));
+		cache = jcacheManager.createCache("actorscache", configuration);
 	}
 
 	@Override
 	public List<Actor> findAll() {
-		return actorBd.findAll();
+		List<Actor> cachedActors = cache.get("one");
+		List<Actor> actors;
+		if (cachedActors != null && !cachedActors.isEmpty()) {
+			LOG.debug("Cache hit");
+			actors = cachedActors;
+		}
+		else {
+			LOG.debug("Nothing found in Cache");
+			actors = actorBd.findAll();
+			cache.put("one", actors);
+		}
+		return actors;
 	}
 
 	@Override

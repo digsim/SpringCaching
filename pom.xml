@@ -1,6 +1,6 @@
 <project
-        xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
     <modelVersion>4.0.0</modelVersion>
@@ -18,12 +18,16 @@
         <!-- Thymeleaf 3 -->
         <org.thymeleaf-version>3.0.7.RELEASE</org.thymeleaf-version>
         <org.thymeleaf-spring5-version>3.0.7.RC1</org.thymeleaf-spring5-version>
-        <org.thymeleaf.extras.springsecurity4-version>3.0.2.RELEASE</org.thymeleaf.extras.springsecurity4-version>
+        <org.thymeleaf.extras.springsecurity4-version>3.0.2.RELEASE
+        </org.thymeleaf.extras.springsecurity4-version>
         <nz.net.ultraq.thymeleaflayout-version>2.2.2</nz.net.ultraq.thymeleaflayout-version>
         <nz.net.ultraq.thymeleaflayout-version>2.2.2</nz.net.ultraq.thymeleaflayout-version>
         <thymeleaf-extras-java8time-version>3.0.1.RELEASE</thymeleaf-extras-java8time-version>
         <!-- AssertJ is not a part of Spring IO platform, so the version must be provided explicitly -->
         <assertj-core-version>3.8.0</assertj-core-version>
+        <!-- Caching -->
+        <ehcache.version>3.4.0</ehcache.version>
+        <javax.cache.version>1.1.0</javax.cache.version>
     </properties>
     <parent>
         <groupId>io.spring.platform</groupId>
@@ -161,6 +165,17 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+        <!-- Caching -->
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+            <version>${javax.cache.version}</version>
         </dependency>
         <!-- Test -->
         <dependency>
