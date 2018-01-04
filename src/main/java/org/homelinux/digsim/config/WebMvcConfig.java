@@ -21,6 +21,17 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+/**
+ * Why we don't need the <code>@EnableWebMvc</code> annotation? See
+ * <a href="https://docs.spring.io/spring/docs/3.2.x/javadoc-api/org/springframework/web/servlet/config/annotation/EnableWebMvc.html">Annotation Type EnableWebMvc</a>.
+ * There it states that:
+ * <quote>
+ *    If the customization options of WebMvcConfigurer (which usually has the @EnableWebMvc annotation)
+ *    do not expose something you need to configure, consider removing the @EnableWebMvc annotation
+ *    and extending directly from WebMvcConfigurationSupport overriding selected @Bean methods.
+ * </quote>
+ */
+
 @Configuration
 class WebMvcConfig extends WebMvcConfigurationSupport {
 

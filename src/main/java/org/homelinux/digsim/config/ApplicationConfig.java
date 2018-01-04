@@ -8,6 +8,10 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import org.homelinux.digsim.Application;
 
+/**
+ * Read this http://www.baeldung.com/properties-with-spring about how to use
+ * <coce>PropertySourcesPlaceholderConfigurer</coce> together with <code><PropertySource/code>.
+ */
 @Configuration
 @PropertySource("classpath:persistence.properties")
 @PropertySource("classpath:application.properties")
