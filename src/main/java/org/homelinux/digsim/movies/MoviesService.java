@@ -8,10 +8,16 @@ import java.util.List;
  */
 public interface MoviesService {
 	public List<Movie> findAll();
+
 	public Movie saveMovie(Movie movie);
+
 	public Movie findOne(long id);
+
 	public List<Movie> findByTitle(String title);
+
 	public boolean exists(String title);
+
 	public List<Movie> findSixPlusMovies();
+
 	public void delete(long id);
 }

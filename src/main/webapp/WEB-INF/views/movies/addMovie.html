@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-        <html xmlns:th="http://www.thymeleaf.org">
-        <head>
-            <title>Add New Movie</title>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-            <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
-        </head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Movie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/core.css}"/>
+</head>
 <body>
 <div th:replace="fragments/layout :: header"></div>
 
-<form class="form-narrow form-horizontal" method="post" th:action="@{/movies/add}" th:object="${movieForm}" th:fragment="movieForm">
+<form class="form-narrow form-horizontal" method="post" th:action="@{/movies/add}"
+      th:object="${movieForm}" th:fragment="movieForm">
     <!--/* Show general error message when form contains errors */-->
 
     <th:block th:if="${#fields.hasErrors('${movieForm.*}')}">
-        <div th:replace="fragments/components :: alert (type='danger', message='Form contains errors. Please try again.')">Alert</div>
+        <div th:replace="fragments/components :: alert (type='danger', message='Form contains errors. Please try again.')">
+            Alert
+        </div>
     </th:block>
     <fieldset>
         <legend>Add new Movie</legend>
         <div class="form-group" th:classappend="${#fields.hasErrors('title')}? 'has-error'">
             <label for="title" class="col-lg-2 control-label">Title</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="title" placeholder="From Dusk Till Dawn" th:field="*{title}" />
+                <input type="text" class="form-control" id="title" placeholder="From Dusk Till Dawn"
+                       th:field="*{title}"/>
                 <span class="help-block" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect title</span>
             </div>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('year')}? 'has-error'">
             <label for="year" class="col-lg-2 control-label">year</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="year" placeholder="1983" th:field="*{year}"/>
+                <input type="text" class="form-control" id="year" placeholder="1983"
+                       th:field="*{year}"/>
                 <span class="help-block" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Incorrect year</span>
             </div>
         </div>

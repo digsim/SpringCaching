@@ -24,7 +24,7 @@ public class SimpleActorsRepository implements ActorsRepository {
 		return Arrays.asList(a);
 	}
 
-	public List<Actor> findAll(){
+	public List<Actor> findAll() {
 		simulateSlowService();
 		List<Actor> actors = new ArrayList<>();
 		Actor a = new Actor();
@@ -41,7 +41,8 @@ public class SimpleActorsRepository implements ActorsRepository {
 		try {
 			long time = 3000L;
 			Thread.sleep(time);
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}

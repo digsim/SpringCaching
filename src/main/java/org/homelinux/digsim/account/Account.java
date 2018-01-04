@@ -16,7 +16,7 @@ public class Account implements java.io.Serializable {
 
 	@Column(unique = true)
 	private String email;
-	
+
 	@JsonIgnore
 	private String password;
 
@@ -24,10 +24,10 @@ public class Account implements java.io.Serializable {
 
 	private Instant created;
 
-    protected Account() {
+	protected Account() {
 
 	}
-	
+
 	public Account(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
@@ -39,7 +39,7 @@ public class Account implements java.io.Serializable {
 		return id;
 	}
 
-    public String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 

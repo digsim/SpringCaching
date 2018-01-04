@@ -20,6 +20,9 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AccountServiceTest {
 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
 	@InjectMocks
 	private AccountService accountService = new AccountService();
 
@@ -28,9 +31,6 @@ public class AccountServiceTest {
 
 	@Mock
 	private PasswordEncoder passwordEncoder;
-
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
 	public void shouldInitializeWithTwoDemoUsers() {
@@ -67,8 +67,6 @@ public class AccountServiceTest {
 	}
 
 	private boolean hasAuthority(UserDetails userDetails, String role) {
-		return userDetails.getAuthorities().stream()
-				.map(GrantedAuthority::getAuthority)
-				.anyMatch(isEqual(role));
+		return userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).anyMatch(isEqual(role));
 	}
 }

@@ -3,8 +3,10 @@
 <head>
     <title>Movies</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/core.css}"/>
 </head>
 <body>
 <div th:replace="fragments/layout :: header"></div>
@@ -20,7 +22,7 @@
     </thead>
     <tbody>
     <tr th:each="movie : ${movies}">
-        <td><a href="hallo" th:href="|${movie.id}|"><span th:text="${movie.title}" /> </a></td>
+        <td><a href="hallo" th:href="|${movie.id}|"><span th:text="${movie.title}"/> </a></td>
         <td th:text="${movie.year}"></td>
         <td th:text="${movie.imdbRating}"></td>
     </tr>

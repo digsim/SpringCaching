@@ -12,18 +12,21 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "movie")
-public class Movie implements java.io.Serializable{
+public class Movie implements java.io.Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	private String title;
+
 	private int year;
+
 	private double imdbRating;
 
-	public Movie(){}
+	public Movie() {
+	}
 
-	public Movie(String title, int year){
+	public Movie(String title, int year) {
 		this.title = title;
 		this.year = year;
 		imdbRating = 0d;
@@ -32,7 +35,6 @@ public class Movie implements java.io.Serializable{
 	public Long getId() {
 		return id;
 	}
-
 
 	public String getTitle() {
 		return title;

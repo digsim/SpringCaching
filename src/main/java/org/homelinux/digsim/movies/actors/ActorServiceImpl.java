@@ -57,7 +57,6 @@ public class ActorServiceImpl implements ActorService {
 		return false;
 	}
 
-
 	@Override
 	public void delete(long id) {
 

@@ -29,9 +29,7 @@ class CustomErrorController {
 			requestUri = "Unknown";
 		}
 
-		String message = MessageFormat.format("{0} returned for {1} with message {2}",
-			statusCode, requestUri, exceptionMessage
-		);
+		String message = MessageFormat.format("{0} returned for {1} with message {2}", statusCode, requestUri, exceptionMessage);
 
 		model.addAttribute("errorMessage", message);
 		return "error/general";

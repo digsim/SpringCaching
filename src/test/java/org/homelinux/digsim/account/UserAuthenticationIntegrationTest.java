@@ -12,29 +12,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserAuthenticationIntegrationTest extends WebSecurityConfigurationAware {
 
-    private static String SEC_CONTEXT_ATTR = HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
+	private static String SEC_CONTEXT_ATTR = HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
 
-    @Test
-    public void requiresAuthentication() throws Exception {
-        mockMvc.perform(get("/account/current"))
-                .andExpect(redirectedUrl("http://localhost/signin"));
-    }
+	@Test
+	public void requiresAuthentication() throws Exception {
+		mockMvc.perform(get("/account/current")).andExpect(redirectedUrl("http://localhost/signin"));
+	}
 
-    @Test
-    public void userAuthenticates() throws Exception {
-        final String username = "user";
+	@Test
+	public void userAuthenticates() throws Exception {
+		final String username = "user";
 
-        mockMvc.perform(post("/authenticate").param("username", username).param("password", "demo"))
-                .andExpect(redirectedUrl("/"))
-                .andExpect(r -> Assert.assertEquals(((SecurityContext) r.getRequest().getSession().getAttribute(SEC_CONTEXT_ATTR)).getAuthentication().getName(), username));
+		mockMvc.perform(post("/authenticate").param("username", username).param("password", "demo")).andExpect(redirectedUrl("/")).andExpect(r -> Assert.assertEquals(((SecurityContext) r.getRequest().getSession().getAttribute(SEC_CONTEXT_ATTR)).getAuthentication().getName(), username));
 
-    }
+	}
 
-    @Test
-    public void userAuthenticationFails() throws Exception {
-        final String username = "user";
-        mockMvc.perform(post("/authenticate").param("username", username).param("password", "invalid"))
-                .andExpect(redirectedUrl("/signin?error=1"))
-                .andExpect(r -> Assert.assertNull(r.getRequest().getSession().getAttribute(SEC_CONTEXT_ATTR)));
-    }
+	@Test
+	public void userAuthenticationFails() throws Exception {
+		final String username = "user";
+		mockMvc.perform(post("/authenticate").param("username", username).param("password", "invalid")).andExpect(redirectedUrl("/signin?error=1")).andExpect(r -> Assert.assertNull(r.getRequest().getSession().getAttribute(SEC_CONTEXT_ATTR)));
+	}
 }

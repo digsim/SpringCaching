@@ -32,22 +32,22 @@ public class MoviesControler {
 		return "movies";
 	}
 
-	@GetMapping(value="/")
-	public String getMovies( Model model){
+	@GetMapping(value = "/")
+	public String getMovies(Model model) {
 		LOG.debug("Entering getMovies()");
 		List<Movie> movies = moviesService.findAll();
 		model.addAttribute("movies", movies);
 		return "movies/movies";
 	}
 
-	@GetMapping(value="/add")
-	public String addMovies( Model model){
+	@GetMapping(value = "/add")
+	public String addMovies(Model model) {
 		LOG.debug("Entering addMovies()");
 		model.addAttribute(new MovieForm());
 		return "movies/addMovie";
 	}
 
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@PostMapping(value = "/add")
 	public String add(@Valid @ModelAttribute MovieForm input, Errors errors, RedirectAttributes ra) {
 		LOG.debug("Entering add()");
@@ -63,30 +63,28 @@ public class MoviesControler {
 		return "redirect:/movies/";
 	}
 
-	@GetMapping(value="/highRated")
-	public String getHighRatedMovies(Model model){
+	@GetMapping(value = "/highRated")
+	public String getHighRatedMovies(Model model) {
 		List<Movie> movies = moviesService.findSixPlusMovies();
 		model.addAttribute("movies", movies);
 		return "movies/movies";
 	}
 
-
-
-	@RequestMapping(value="/{id}")
-	public String getMovie(@PathVariable long id, Model model){
-		Movie movie =  moviesService.findOne(id);
+	@RequestMapping(value = "/{id}")
+	public String getMovie(@PathVariable long id, Model model) {
+		Movie movie = moviesService.findOne(id);
 		LOG.debug("Found movie {}", movie.getTitle());
 		model.addAttribute("movie", movie);
-		if(movie != null) {
+		if (movie != null) {
 			return "movies/movieDetails";
 		}
-		else{
+		else {
 			return "redirect:/movies/";
 		}
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteMovie(@PathVariable long id){
+	public void deleteMovie(@PathVariable long id) {
 		moviesService.delete(id);
 	}
 

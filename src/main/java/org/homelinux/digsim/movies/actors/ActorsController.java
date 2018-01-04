@@ -40,14 +40,14 @@ public class ActorsController {
 		return "actors/actors";
 	}
 
-	@GetMapping(value="/add")
-	public String addActors( Model model){
+	@GetMapping(value = "/add")
+	public String addActors(Model model) {
 		LOG.debug("Entering addActors()");
 		model.addAttribute(new ActorForm());
 		return "movies/addMovie";
 	}
 
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@PostMapping(value = "/add")
 	public String add(@Valid @ModelAttribute ActorForm input, Errors errors, RedirectAttributes ra) {
 		LOG.debug("Entering add()");
@@ -63,15 +63,15 @@ public class ActorsController {
 		return "redirect:/actors/";
 	}
 
-	@RequestMapping(value="/{id}")
-	public String getMovie(@PathVariable long id, Model model){
-		Actor actor =  actorService.findOne(id);
+	@RequestMapping(value = "/{id}")
+	public String getMovie(@PathVariable long id, Model model) {
+		Actor actor = actorService.findOne(id);
 		LOG.debug("Found actor {}", actor.getFirstname());
 		model.addAttribute("actor", actor);
-		if(actor != null) {
+		if (actor != null) {
 			return "actors/actorDetails";
 		}
-		else{
+		else {
 			return "redirect:/actors/";
 		}
 	}

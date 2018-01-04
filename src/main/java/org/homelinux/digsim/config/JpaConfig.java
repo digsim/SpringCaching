@@ -25,64 +25,72 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackageClasses = Application.class)
 class JpaConfig {
 
-    @Value("${dataSource.driverClassName}")
-    private String driver;
-    @Value("${dataSource.url}")
-    private String url;
-    @Value("${dataSource.username}")
-    private String username;
-    @Value("${dataSource.password}")
-    private String password;
-    @Value("${hibernate.dialect}")
-    private String dialect;
-    @Value("${hibernate.hbm2ddl.auto}")
-    private String hbm2ddlAuto;
-    @Value("${hibernate.show_sql}")
-    private String showSql;
-    @Value("${hibernate.format_sql}")
-    private String formatSql;
-    @Value("${hibernate.use_sql_comments}")
-    private String useSqlComments;
+	@Value("${dataSource.driverClassName}")
+	private String driver;
 
-    @Bean
-    public DataSource dataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName(driver);
-        config.setJdbcUrl(url);
-        config.setUsername(username);
-        config.setPassword(password);
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.addDataSourceProperty("useServerPrepStmts", "true");
+	@Value("${dataSource.url}")
+	private String url;
 
-        return new HikariDataSource(config);
-    }
+	@Value("${dataSource.username}")
+	private String username;
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource);
+	@Value("${dataSource.password}")
+	private String password;
 
-        String entities = ClassUtils.getPackageName(Application.class);
-        String converters = ClassUtils.getPackageName(Jsr310JpaConverters.class);
-        entityManagerFactoryBean.setPackagesToScan(entities, converters);
+	@Value("${hibernate.dialect}")
+	private String dialect;
 
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+	@Value("${hibernate.hbm2ddl.auto}")
+	private String hbm2ddlAuto;
 
-        Properties jpaProperties = new Properties();
-        jpaProperties.put(Environment.DIALECT, dialect);
-        jpaProperties.put(Environment.HBM2DDL_AUTO, hbm2ddlAuto);
-        jpaProperties.put(Environment.SHOW_SQL, showSql);
-        jpaProperties.put(Environment.FORMAT_SQL, formatSql);
-        jpaProperties.put(Environment.USE_SQL_COMMENTS, useSqlComments);
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
+	@Value("${hibernate.show_sql}")
+	private String showSql;
 
-        return entityManagerFactoryBean;
-    }
+	@Value("${hibernate.format_sql}")
+	private String formatSql;
 
-    @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
+	@Value("${hibernate.use_sql_comments}")
+	private String useSqlComments;
+
+	@Bean
+	public DataSource dataSource() {
+		HikariConfig config = new HikariConfig();
+		config.setDriverClassName(driver);
+		config.setJdbcUrl(url);
+		config.setUsername(username);
+		config.setPassword(password);
+		config.addDataSourceProperty("cachePrepStmts", "true");
+		config.addDataSourceProperty("prepStmtCacheSize", "250");
+		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+		config.addDataSourceProperty("useServerPrepStmts", "true");
+
+		return new HikariDataSource(config);
+	}
+
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource);
+
+		String entities = ClassUtils.getPackageName(Application.class);
+		String converters = ClassUtils.getPackageName(Jsr310JpaConverters.class);
+		entityManagerFactoryBean.setPackagesToScan(entities, converters);
+
+		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+
+		Properties jpaProperties = new Properties();
+		jpaProperties.put(Environment.DIALECT, dialect);
+		jpaProperties.put(Environment.HBM2DDL_AUTO, hbm2ddlAuto);
+		jpaProperties.put(Environment.SHOW_SQL, showSql);
+		jpaProperties.put(Environment.FORMAT_SQL, formatSql);
+		jpaProperties.put(Environment.USE_SQL_COMMENTS, useSqlComments);
+		entityManagerFactoryBean.setJpaProperties(jpaProperties);
+
+		return entityManagerFactoryBean;
+	}
+
+	@Bean
+	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+		return new JpaTransactionManager(entityManagerFactory);
+	}
 }

@@ -21,11 +21,13 @@ public class Actor {
 	private Long id;
 
 	private String firstname;
+
 	private String lastname;
 
-	public Actor(){}
+	public Actor() {
+	}
 
-	public Actor(String firstname, String lastname){
+	public Actor(String firstname, String lastname) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
@@ -54,7 +56,7 @@ public class Actor {
 		this.lastname = lastname;
 	}
 
-	public String toString(){
+	public String toString() {
 		return String.format("Actor[id=%d, firstname='%s', lastname='%s'", id, firstname, lastname);
 	}
 }

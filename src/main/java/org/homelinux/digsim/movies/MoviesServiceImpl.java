@@ -60,19 +60,19 @@ public class MoviesServiceImpl implements MoviesService {
 		return moviesBd.findByTitle(title);
 	}
 
-	public boolean exists(String title){
+	public boolean exists(String title) {
 		List<Movie> movies = findByTitle(title);
-		if(movies != null && !movies.isEmpty()){
+		if (movies != null && !movies.isEmpty()) {
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
 	}
 
 	@Override
 	public List<Movie> findSixPlusMovies() {
-		List<Movie> movies =  moviesBd.findHighRatedMovies(new Double(6));
+		List<Movie> movies = moviesBd.findHighRatedMovies(new Double(6));
 		return movies;
 	}
 
