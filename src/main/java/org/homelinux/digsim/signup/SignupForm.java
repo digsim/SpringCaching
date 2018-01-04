@@ -1,7 +1,7 @@
 package org.homelinux.digsim.signup;
 
-import org.hibernate.validator.constraints.*;
-
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.homelinux.digsim.account.Account;
 
 public class SignupForm {

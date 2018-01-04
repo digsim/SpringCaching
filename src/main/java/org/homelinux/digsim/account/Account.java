@@ -1,12 +1,9 @@
 package org.homelinux.digsim.account;
 
-import java.time.ZonedDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-
 import java.time.Instant;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SuppressWarnings("serial")
 @Entity

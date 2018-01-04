@@ -1,9 +1,6 @@
 package org.homelinux.digsim.config;
 
-import java.net.UnknownHostException;
-
 import com.mongodb.Mongo;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -14,7 +11,8 @@ import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+import java.net.UnknownHostException;
 
 
 @Configuration

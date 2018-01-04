@@ -1,6 +1,5 @@
 package org.homelinux.digsim.movies;
 
-import org.homelinux.digsim.account.Account;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Digsim

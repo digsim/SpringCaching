@@ -1,16 +1,20 @@
 package org.homelinux.digsim.signup;
 
-import javax.validation.Valid;
-
+import org.homelinux.digsim.account.Account;
+import org.homelinux.digsim.account.AccountService;
+import org.homelinux.digsim.support.web.Ajax;
+import org.homelinux.digsim.support.web.MessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import org.homelinux.digsim.account.*;
-import org.homelinux.digsim.support.web.*;
+import javax.validation.Valid;
 
 @Controller
 class SignupController {

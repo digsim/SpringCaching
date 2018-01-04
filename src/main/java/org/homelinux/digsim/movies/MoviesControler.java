@@ -1,22 +1,17 @@
 package org.homelinux.digsim.movies;
 
-import org.homelinux.digsim.account.Account;
 import org.homelinux.digsim.support.web.MessageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sun.rmi.runtime.Log;
 
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

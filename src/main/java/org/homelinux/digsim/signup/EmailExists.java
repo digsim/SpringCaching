@@ -1,7 +1,7 @@
 package org.homelinux.digsim.signup;
 
-import org.springframework.stereotype.Component;
 import org.homelinux.digsim.account.AccountRepository;
+import org.springframework.stereotype.Component;
 
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;

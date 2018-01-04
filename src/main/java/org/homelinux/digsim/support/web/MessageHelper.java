@@ -1,9 +1,9 @@
 package org.homelinux.digsim.support.web;
 
-import static org.homelinux.digsim.support.web.Message.MESSAGE_ATTRIBUTE;
-
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static org.homelinux.digsim.support.web.Message.MESSAGE_ATTRIBUTE;
 
 public final class MessageHelper {
 

@@ -1,12 +1,11 @@
 package org.homelinux.digsim.config;
 
+import org.homelinux.digsim.Application;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-
-import org.homelinux.digsim.Application;
 
 /**
  * Read this http://www.baeldung.com/properties-with-spring about how to use
