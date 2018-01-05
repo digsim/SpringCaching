@@ -2,6 +2,7 @@ package org.homelinux.digsim.movies.actors;
 
 import org.springframework.stereotype.Component;
 
+import javax.cache.annotation.CacheResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class SimpleActorsRepository implements ActorsRepository {
 
 	@Override
-	//@Cacheable("actors")
+	@CacheResult(cacheName = "actors")
 	public List<Actor> getByFirstname(String name) {
 		simulateSlowService();
 		Actor a = new Actor();
@@ -24,6 +25,7 @@ public class SimpleActorsRepository implements ActorsRepository {
 		return Arrays.asList(a);
 	}
 
+	@CacheResult(cacheName = "actors")
 	public List<Actor> findAll() {
 		simulateSlowService();
 		List<Actor> actors = new ArrayList<>();
