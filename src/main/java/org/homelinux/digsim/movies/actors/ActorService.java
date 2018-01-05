@@ -18,4 +18,6 @@ public interface ActorService {
 	public boolean exists(String title);
 
 	public void delete(long id);
+
+	public List<Actor> findGoodActors();
 }

@@ -40,6 +40,14 @@ public class ActorsController {
 		return "actors/actors";
 	}
 
+	@GetMapping(value = "/good")
+	public String getGoodActors(Model model) {
+		LOG.debug("Entering getGoodActors()");
+		List<Actor> actors = actorService.findGoodActors();
+		model.addAttribute("actors", actors);
+		return "actors/actors";
+	}
+
 	@GetMapping(value = "/add")
 	public String addActors(Model model) {
 		LOG.debug("Entering addActors()");

@@ -11,4 +11,6 @@ public interface ActorsRepository {//extends Repository<Actor, Long> {
 	public List<Actor> getByFirstname(String Name);
 
 	public List<Actor> findAll();
+
+	List<Actor> findGoodOnes();
 }

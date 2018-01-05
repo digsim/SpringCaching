@@ -33,6 +33,7 @@ public class ActorServiceImpl implements ActorService {
 
 	@Override
 	public List<Actor> findAll() {
+		LOG.debug("In the Service class");
 		List<Actor> actors = actorBd.findAll();
 		return actors;
 	}
@@ -60,5 +61,12 @@ public class ActorServiceImpl implements ActorService {
 	@Override
 	public void delete(long id) {
 
+	}
+
+	@Override
+	public List<Actor> findGoodActors() {
+		LOG.debug("In the Service class");
+		List<Actor> actors = actorBd.findGoodOnes();
+		return actors;
 	}
 }
